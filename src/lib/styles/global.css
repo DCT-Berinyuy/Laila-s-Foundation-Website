@@ -1,0 +1,306 @@
+/*
+ * "Warm Hope" palette
+ * Contrast notes (WCAG 2.2 AA):
+ *  - charcoal on cream ............ 13.9:1
+ *  - terracotta-600 on cream ...... 5.7:1  (use for small text / links on cream)
+ *  - terracotta-500 on cream ...... 4.3:1  (large headings only, >= 24px / 19px bold)
+ *  - white on terracotta-500 ...... 4.7:1  (buttons)
+ *  - cream on teal ................ 8.8:1
+ *  - amber on teal ................ 4.6:1
+ *  Amber is never used for text or meaningful icons on cream (1.9:1).
+ */
+:root {
+	--terracotta-500: #c1502e;
+	--terracotta-600: #a8431f;
+	--terracotta-700: #8c3719;
+	--teal-500: #1b4b4f;
+	--teal-600: #143a3d;
+	--teal-700: #0f2d30;
+	--amber-400: #e3a857;
+	--amber-200: #f3d9ae;
+	--cream: #faf3e9;
+	--cream-200: #f3e7d4;
+	--charcoal: #2b2620;
+	--charcoal-soft: #544b41;
+	--white: #ffffff;
+
+	--font-serif: 'Playfair Display Variable', Georgia, 'Times New Roman', serif;
+	--font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+	--radius-sm: 6px;
+	--radius: 14px;
+	--radius-lg: 22px;
+	--shadow-sm: 0 1px 2px rgb(43 38 32 / 8%), 0 2px 8px rgb(43 38 32 / 6%);
+	--shadow: 0 2px 4px rgb(43 38 32 / 6%), 0 12px 32px rgb(43 38 32 / 10%);
+
+	--container: 72rem;
+	--gutter: clamp(1rem, 4vw, 2rem);
+	--section-y: clamp(3.5rem, 8vw, 6rem);
+	--header-h: 4.5rem;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 1.0625rem;
+	line-height: 1.65;
+	color: var(--charcoal);
+	background: var(--cream);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-serif);
+	line-height: 1.2;
+	margin: 0 0 0.6em;
+	color: var(--teal-500);
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: clamp(2.25rem, 6vw, 3.75rem);
+	font-weight: 700;
+}
+
+h2 {
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	font-weight: 700;
+}
+
+h3 {
+	font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+	font-weight: 600;
+}
+
+p {
+	margin: 0 0 1em;
+	text-wrap: pretty;
+}
+
+a {
+	color: var(--terracotta-600);
+	text-underline-offset: 0.2em;
+	text-decoration-thickness: 1px;
+}
+
+a:hover {
+	color: var(--terracotta-700);
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 3px solid var(--terracotta-500);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+ul {
+	padding-left: 1.2em;
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.section {
+	padding-block: var(--section-y);
+}
+
+.section--tint {
+	background: var(--cream-200);
+}
+
+.section--teal {
+	background: var(--teal-500);
+	color: var(--cream);
+}
+
+.section--teal h2,
+.section--teal h3 {
+	color: var(--cream);
+}
+
+.lead {
+	font-size: clamp(1.125rem, 2vw, 1.3rem);
+	color: var(--charcoal-soft);
+	max-width: 44rem;
+}
+
+.prose {
+	max-width: 44rem;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Buttons */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 2.875rem;
+	padding: 0.7rem 1.4rem;
+	border-radius: 999px;
+	border: 2px solid transparent;
+	font: 600 1rem/1.2 var(--font-sans);
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		border-color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.btn:hover {
+	text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.btn:hover {
+		transform: translateY(-1px);
+	}
+}
+
+.btn--primary {
+	background: var(--terracotta-500);
+	color: var(--white);
+}
+
+.btn--primary:hover {
+	background: var(--terracotta-700);
+	color: var(--white);
+}
+
+.btn--outline {
+	border-color: var(--teal-500);
+	color: var(--teal-500);
+	background: transparent;
+}
+
+.btn--outline:hover {
+	background: var(--teal-500);
+	color: var(--cream);
+}
+
+.btn--light {
+	border-color: var(--cream);
+	color: var(--cream);
+	background: transparent;
+}
+
+.btn--light:hover {
+	background: var(--cream);
+	color: var(--teal-500);
+}
+
+.btn-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+/* Card grid */
+.grid {
+	display: grid;
+	gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+@media (min-width: 40rem) {
+	.grid--2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 56rem) {
+	.grid--3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.grid--4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media (min-width: 40rem) and (max-width: 55.99rem) {
+	.grid--3,
+	.grid--4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.grid--stats {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 56rem) {
+	.grid--stats {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.card {
+	background: var(--white);
+	border-radius: var(--radius);
+	padding: clamp(1.25rem, 3vw, 1.75rem);
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--cream-200);
+}
+
+.card h3 {
+	margin-bottom: 0.5em;
+}
+
+.card ul {
+	margin: 0;
+	padding-left: 1.1em;
+}
+
+.card li + li {
+	margin-top: 0.35em;
+}
+
+.card li::marker {
+	color: var(--terracotta-600);
+}
