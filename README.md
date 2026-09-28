@@ -27,7 +27,7 @@ The site is fully static. It has no database, CMS, accounts or online payments. 
 
 ## Getting started
 
-Requires Node.js 20 or newer.
+Requires Node.js 20.19+ or 22.12+ (required by Vite 8).
 
 ```sh
 npm install
@@ -44,13 +44,24 @@ SITE_URL=https://www.example.org npm run build
 npm run preview    # serve ./build locally at http://localhost:4173
 ```
 
-If `SITE_URL` is missing, the build prints a warning and falls back to `http://localhost:4173`.
+If `SITE_URL` is missing, the build falls back to the Vercel deployment URL when it runs on Vercel. Otherwise it prints a warning and uses `http://localhost:4173`.
+
+### Deploying to Vercel
+
+The repository is ready to import as-is. `vercel.json` sets the build command, the `build/` output directory, clean URLs (`/about` rather than `/about.html`), the custom 404 page, long-term caching for hashed assets and basic security headers.
+
+1. In Vercel, choose **Add New → Project** and import this GitHub repository. Leave the framework preset and build settings as detected; `vercel.json` overrides them.
+2. Optional: once a custom domain is attached, add a `SITE_URL` environment variable (for example `https://www.lailasfoundation.org`) and redeploy. Until then, production builds use the project's `*.vercel.app` URL, and preview deployments use their own URL.
+3. Each push to `main` deploys to production. Each pull request gets its own preview URL.
+
+The build log will show `Detected Vercel. Please remove adapter-static options…`. This is expected and harmless: the site deliberately builds to `build/`, and `vercel.json` serves it from there.
+
+### Other hosts
 
 The output in `build/` is plain static files and can be hosted anywhere:
 
 - **Netlify:** build command `npm run build`, publish directory `build`, plus a `SITE_URL` environment variable.
 - **Cloudflare Pages:** same build command and output directory. Set `SITE_URL` under _Settings → Environment variables_.
-- **Vercel:** framework preset _Other_, output directory `build`, plus a `SITE_URL` environment variable.
 - **GitHub Pages:** serving from a sub-path (such as `/repo-name`) needs [`paths.base`](https://svelte.dev/docs/kit/configuration#paths) set in `vite.config.ts`. A custom domain avoids this.
 
 ## Editing content
